@@ -7,18 +7,13 @@ jobs:
     steps:
     - checkout
     - run:
-        name: Creating Dummy Artifacts
+        name: Install dependencies
         command: |
-          echo "my artifact file" > /tmp/art-1;
-          mkdir /tmp/artifacts;
-          echo "my artifact files in a dir" > /tmp/artifacts/art-2;
-
-    - store_artifacts:
-        path: /tmp/art-1
-        destination: artifact-file
-
-    - store_artifacts:
-        path: /tmp/artifacts
+          pip install requests
+    - run:
+        name: Create artifact
+        command: |
+          echo "This is an example artifact" > example.txt
     - run:
         name: Upload to OneDrive
         command: |
@@ -31,5 +26,5 @@ jobs:
           echo "export ONEDRIVE_ACCESS_TOKEN=$access_token" >> $BASH_ENV
           curl -X PUT \
                     -H "Authorization: Bearer $ONEDRIVE_ACCESS_TOKEN" \
-                    -F "file="tmp/artifacts \
+                    -T example.txt \
                     "https://itnse-my.sharepoint.com/:f:/g/personal/mdahteshamahmad_nseit_com/EtqUtqyAJO9EuMOeL2LfI7kBw2R_V1hq2Oa8vSNs36hSow?e=8o6D1H"
