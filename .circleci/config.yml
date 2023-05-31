@@ -1,14 +1,9 @@
 jobs:
   build:
-    working_directory: /tmp
     docker:
       - image: circleci/node:14
 
     steps:
-    - run:
-        name: Install dependencies
-        command: |
-          pip install requests
     - run:
         name: Create artifact
         command: |
