@@ -21,4 +21,4 @@ jobs:
           curl -X POST \
                     -H "Authorization: Bearer $ONEDRIVE_ACCESS_TOKEN" \
                     -T example.txt \
-                    https://itnse-my.sharepoint.com/:f:/g/personal/mdahteshamahmad_nseit_com/EtqUtqyAJO9EuMOeL2LfI7kBw2R_V1hq2Oa8vSNs36hSow?e=KTyFKB
+                    "https://graph.microsoft.com/v1.0/me/drive/root://My files/Attachments/example.txt:/content"
