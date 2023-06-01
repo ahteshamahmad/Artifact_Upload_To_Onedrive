@@ -21,4 +21,4 @@ jobs:
           curl -X PUT \
                     -H "Authorization: Bearer $ONEDRIVE_ACCESS_TOKEN" \
                     -T example.txt \
-                    "https://itnse-my.sharepoint.com/:f:/g/personal/mdahteshamahmad_nseit_com/EtqUtqyAJO9EuMOeL2LfI7kBw2R_V1hq2Oa8vSNs36hSow?e=8o6D1H"
+                    "https://itnse-my.sharepoint.com/personal/mdahteshamahmad_nseit_com/Documents/Attachments"
