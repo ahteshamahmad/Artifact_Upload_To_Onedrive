@@ -17,6 +17,7 @@ jobs:
             -d "grant_type=client_credentials" \
             -d "scope=https://graph.microsoft.com/.default" \
             "https://login.microsoftonline.com/4350b58d-636d-4daf-a0ff-97d670fd9a98/oauth2/v2.0/token" | jq -r '.access_token' > access_token
-    - run:
-          name: Display access token
-          command: cat access_token
+          curl -X PUT \
+            -H "Authorization: Bearer $access_token" \
+            -T example.txt \
+            "https://graph.microsoft.com/v1.0/me/drive/root:/attachments/example.txt:/content"
