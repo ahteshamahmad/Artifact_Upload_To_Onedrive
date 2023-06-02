@@ -11,12 +11,12 @@ jobs:
     - run:
         name: Upload to OneDrive
         command: |
-          access_token=$(curl -X POST \
-                        -d "client_id=ccd1d01e-7248-484c-a3f8-c43576f46225" \
-                        -d "client_secret=SRf8Q~NltTGusRBywZsf5mX4FQ8Oia5l6WCo4alu" \
-                        -d "grant_type=client_credentials" \
-                        -d "scope=https://graph.microsoft.com/.default" \
-                        "https://login.microsoftonline.com/4350b58d-636d-4daf-a0ff-97d670fd9a98/oauth2/v2.0/token" | jq -r '.access_token')
+          curl -X POST \
+            -d "client_id=ccd1d01e-7248-484c-a3f8-c43576f46225" \
+            -d "client_secret=SRf8Q~NltTGusRBywZsf5mX4FQ8Oia5l6WCo4alu" \
+            -d "grant_type=client_credentials" \
+            -d "scope=https://graph.microsoft.com/.default" \
+            "https://login.microsoftonline.com/4350b58d-636d-4daf-a0ff-97d670fd9a98/oauth2/v2.0/token" | jq -r '.access_token' > access_token
     - run:
           name: Display access token
           command: cat access_token
