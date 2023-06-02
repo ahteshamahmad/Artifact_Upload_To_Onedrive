@@ -24,7 +24,7 @@ jobs:
                         -d "scope=https://graph.microsoft.com/.default" \
                         "https://login.microsoftonline.com/4350b58d-636d-4daf-a0ff-97d670fd9a98/oauth2/v2.0/token" | jq -r '.access_token')
           echo "export ONEDRIVE_ACCESS_TOKEN=$access_token" >> $BASH_ENV
-          curl -X PUT \
+          curl -X POST \
                     -H "Authorization: Bearer $ONEDRIVE_ACCESS_TOKEN" \
                     -T example.txt \
                     "https://itnse-my.sharepoint.com/personal/mdahteshamahmad_nseit_com/Documents/Attachments"
