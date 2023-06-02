@@ -21,4 +21,4 @@ jobs:
           curl -X POST \
                     -H "Authorization: Bearer $ONEDRIVE_ACCESS_TOKEN" \
                     -T example.txt \
-                    "https://graph.microsoft.com/v1.0/me/drive/root://PersonalAccessForFileUploading/example.txt:/content"
+                    "https://graph.microsoft.com/v1.0/me/drive/root://Documents/Attachments/example.txt:/content"
