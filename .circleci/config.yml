@@ -20,4 +20,4 @@ jobs:
           curl -X POST \
             -H "Authorization: Bearer $access_token" \
             -T example.txt \
-            "https://graph.microsoft.com/v1.0/me/drive/root:/My files/example.txt:/content"
+            "https://graph.microsoft.com/v1.0/me/drive/root:/OneDrive - NSEIT Limited/My files/example.txt:/content"
