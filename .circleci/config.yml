@@ -15,5 +15,6 @@ jobs:
                         -d "client_id=ccd1d01e-7248-484c-a3f8-c43576f46225" \
                         -d "client_secret=368ab8df-a4d5-4833-8a42-901508d9b2d5" \
                         -d "grant_type=client_credentials" \
-                        -d "scope=api://ccd1d01e-7248-484c-a3f8-c43576f46225/MyScope" \
+                        -d "scope=https://graph.microsoft.com/.default" \
                         "https://login.microsoftonline.com/4350b58d-636d-4daf-a0ff-97d670fd9a98/oauth2/v2.0/token" | jq -r '.access_token')
+                        echo "export ONEDRIVE_ACCESS_TOKEN=$access_token" >> $BASH_ENV
