@@ -21,3 +21,4 @@ jobs:
                         "https://login.microsoftonline.com/4350b58d-636d-4daf-a0ff-97d670fd9a98/oauth2/v2.0/token" | jq -r '.access_token')
                         export ONEDRIVE_ACCESS_TOKEN=$(cat access_token)
                         echo "$ONEDRIVE_ACCESS_TOKEN"
+                        
