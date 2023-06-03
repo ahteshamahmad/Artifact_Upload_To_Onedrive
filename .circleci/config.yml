@@ -15,6 +15,6 @@ jobs:
         command: |
           curl -X POST \
             -H "Authorization: Bearer $ONEDRIVE_ACCESS_TOKEN" \
-            -H "Content-Type: application/json
+            -H "Content-Type: application/json" \
             -T example.txt \
             "https://graph.microsoft.com/v1.0/me/drive/root/children"
