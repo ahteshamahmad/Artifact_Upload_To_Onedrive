@@ -13,8 +13,11 @@ jobs:
     - run:
         name: Upload to OneDrive
         command: |
+          - export ARTIFACT_PATH=example.txt
+          - export FILE_CONTENT=$(cat $ARTIFACT_PATH | base64 -w 0)
+          - export JSON_PAYLOAD="{\"name\":\"$(basename $ARTIFACT_PATH)\",\"file\":{\"@odata.type\":\"microsoft.graph.fileAttachment\",\"contentBytes\":\"$FILE_CONTENT\"}}"
           curl -X POST \
             -H "Authorization: Bearer $ONEDRIVE_ACCESS_TOKEN" \
-            -H "Content-Type: text/plain" \
-            -T example.txt \
+            -H "Content-Type: application/json" \
+            -d "$JSON_PAYLOAD" \
             "https://graph.microsoft.com/v1.0/me/drive/root/children"
