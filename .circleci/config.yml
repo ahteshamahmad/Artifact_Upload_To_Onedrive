@@ -8,15 +8,10 @@ jobs:
     steps:
     - run:
         name: Create artifact
-        command: |
-          echo "This is an example artifact" > example.txt
     - run:
         name: Upload to OneDrive
         command: |
-          export ARTIFACT_PATH=example.txt
-          cat ARTIFACT_PATH
           curl -X POST \
             -H "Authorization: Bearer $ONEDRIVE_ACCESS_TOKEN" \
-            -H "Content-Type: application/octet-stream" \
-            --data-binary "$ARTIFACT_PATH" \
             "https://graph.microsoft.com/v1.0/me/drive/root/children"
+            echo "This is an example artifact" > example.txt
