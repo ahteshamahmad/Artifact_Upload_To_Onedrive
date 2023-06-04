@@ -17,8 +17,18 @@ jobs:
           export FILE_CONTENT=$(base64 -w 0 "$ARTIFACT_PATH")
           export JSON_PAYLOAD="{\"name\":\"$(basename $ARTIFACT_PATH)\",\"content\":\"$FILE_CONTENT\"}"
           echo "$JSON_PAYLOAD" > temp.json
-          curl -X POST \
+          CREATE_RESPONSE=$(curl -X POST \
             -H "Authorization: Bearer $ONEDRIVE_ACCESS_TOKEN" \
             -H "Content-Type: application/json" \
             -d "@temp.json" \
-            "https://graph.microsoft.com/v1.0/me/drive/root/children"
+            "https://graph.microsoft.com/v1.0/me/drive/root/children")
+          FILE_ID=$(echo "$CREATE_RESPONSE" | jq -r '.id')
+          UPLOAD_RESPONSE=$(curl -X PUT \
+          -H "Authorization: Bearer $ONEDRIVE_ACCESS_TOKEN" \
+          -H "Content-Type: text/plain" \
+          --data-binary "@$ARTIFACT_PATH" \
+          "https://graph.microsoft.com/v1.0/me/drive/items/$FILE_ID/content")
+          # Check the response from the upload request
+          echo "$UPLOAD_RESPONSE"
+
+            
