@@ -14,4 +14,6 @@ jobs:
           curl -X POST \
             -H "Authorization: Bearer $ONEDRIVE_ACCESS_TOKEN" \
             "https://graph.microsoft.com/v1.0/me/drive/root/children"
+          run: 
             echo "This is an example artifact" > example.txt
+            
