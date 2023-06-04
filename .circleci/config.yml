@@ -15,10 +15,10 @@ jobs:
         command: |
           export ARTIFACT_PATH=example.txt
           export FILE_CONTENT=$(base64 -w 0 "$ARTIFACT_PATH")
-          export JSON_PAYLOAD="{\"name\":\"$(basename $ARTIFACT_PATH)\"}"
+          export JSON_PAYLOAD="{\"name\":\"$(basename $ARTIFACT_PATH)\",\"content\":\"$FILE_CONTENT\"}"
           echo "$JSON_PAYLOAD" > temp.json
           curl -X POST \
             -H "Authorization: Bearer $ONEDRIVE_ACCESS_TOKEN" \
             -H "Content-Type: application/json" \
-            -d "temp.json" \
+            -d "@temp.json" \
             "https://graph.microsoft.com/v1.0/me/drive/root/children"
