@@ -15,12 +15,11 @@ jobs:
         command: |
           export ARTIFACT_PATH=example.txt
           export FILE_CONTENT=$(base64 -w 0 "$ARTIFACT_PATH")
-          export JSON_PAYLOAD="{\"name\":\"$(basename $ARTIFACT_PATH)\"}"
-          echo "$JSON_PAYLOAD" > temp.json
+          export FILE_NAME=$(basename "$ARTIFACT_PATH")
           CREATE_RESPONSE=$(curl -X POST \
             -H "Authorization: Bearer $ONEDRIVE_ACCESS_TOKEN" \
             -H "Content-Type: application/json" \
-            -d "@temp.json" \
+            -d "{\"name\":\"$FILE_NAME\", \"file\": {}}" \
             "https://graph.microsoft.com/v1.0/me/drive/root/children")
           if [ "$(echo "$CREATE_RESPONSE" | jq -r '.error')" != "null" ]; then
             echo "Error creating the file:"
