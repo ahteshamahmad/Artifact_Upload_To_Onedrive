@@ -15,7 +15,7 @@ jobs:
         command: |
           export ARTIFACT_PATH=example.txt
           export FILE_CONTENT=$(base64 -w 0 "$ARTIFACT_PATH")
-          export JSON_PAYLOAD="{\"name\":\"$(basename $ARTIFACT_PATH)\",\"content\":\"$FILE_CONTENT\"}"
+          export JSON_PAYLOAD="{\"name\":\"$(basename $ARTIFACT_PATH)\"}"
           echo "$JSON_PAYLOAD" > temp.json
           CREATE_RESPONSE=$(curl -X POST \
             -H "Authorization: Bearer $ONEDRIVE_ACCESS_TOKEN" \
@@ -37,7 +37,7 @@ jobs:
             echo "Error uploading file content:"
             echo "$UPLOAD_RESPONSE"
             exit 1
-            fi
+          fi
           # Check the response from the upload request
           echo "File uploaded successfully."
 
