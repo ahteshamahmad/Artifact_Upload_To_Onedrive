@@ -22,13 +22,23 @@ jobs:
             -H "Content-Type: application/json" \
             -d "@temp.json" \
             "https://graph.microsoft.com/v1.0/me/drive/root/children")
+          if [ "$(echo "$CREATE_RESPONSE" | jq -r '.error')" != "null" ]; then
+            echo "Error creating the file:"
+            echo "$CREATE_RESPONSE"
+            exit 1
+          fi
           FILE_ID=$(echo "$CREATE_RESPONSE" | jq -r '.id')
           UPLOAD_RESPONSE=$(curl -X PUT \
           -H "Authorization: Bearer $ONEDRIVE_ACCESS_TOKEN" \
-          -H "Content-Type: text/plain" \
+          -H "Content-Type: application/octet-stream" \
           --data-binary "@$ARTIFACT_PATH" \
           "https://graph.microsoft.com/v1.0/me/drive/items/$FILE_ID/content")
+          if [ "$(echo "$UPLOAD_RESPONSE" | jq -r '.error')" != "null" ]; then
+            echo "Error uploading file content:"
+            echo "$UPLOAD_RESPONSE"
+            exit 1
+            fi
           # Check the response from the upload request
-          echo "$UPLOAD_RESPONSE"
+          echo "File uploaded successfully."
 
             
