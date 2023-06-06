@@ -9,7 +9,7 @@ jobs:
     - run:
         name: Create artifact
         command: |
-          echo "This is an example artifact. I am going to create and upload artifact" > MyArtifactFile.txt
+          echo "Hi, This is Md here." > ArtifactFile.txt
     - run:
         name: Upload to OneDrive
         command: |
