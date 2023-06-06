@@ -13,7 +13,7 @@ jobs:
     - run:
         name: Upload to OneDrive
         command: |
-          export ARTIFACT_PATH=$(ArtifactFile.txt)
+          export ARTIFACT_PATH=$ArtifactFile.txt
           export FILE_CONTENT=$(base64 -w 0 "$ARTIFACT_PATH")
           export FILE_NAME=$(basename "$ARTIFACT_PATH")
           CREATE_RESPONSE=$(curl -X POST \
